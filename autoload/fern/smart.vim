@@ -35,7 +35,7 @@ function! fern#smart#binary(binary, text) abort
   if node is# v:null
     return "\<Nop>"
   endif
-  call system('grep -qI . %s', node._path)
+  call system('grep -qI . ' . shellescape(node._path))
   if v:shell_error
     return a:binary
   else
