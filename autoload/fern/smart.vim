@@ -28,3 +28,18 @@ function! fern#smart#scheme(default, schemes) abort
   endif
   return a:default
 endfunction
+
+function! fern#smart#binary(binary, text) abort
+  let helper = fern#helper#new()
+  let node = helper.sync.get_cursor_node()
+  if node is# v:null
+    return "\<Nop>"
+  endif
+  call system('grep -qI . %s', node._path)
+  if v:shell_error
+    return a:binary
+  else
+    return a:text
+  endif
+endif
+endfunction

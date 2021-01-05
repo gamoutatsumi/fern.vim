@@ -222,6 +222,9 @@ Fern provide following mapping helper functions:
 	|fern#smart#scheme()|	Return a mapping expression determined by a
 				scheme of a current fern tree
 
+	|fern#smart#binary()|	Return a mapping expression determined by a
+				filetype (binary or ascii) of a current cursor node
+
 For example, following execute "open" on leaf but "expand" on branch.
 >
 	nmap <buffer><expr> <Plug>(fern-my-open-or-expand)
@@ -695,6 +698,20 @@ fern#smart#scheme({default}, {schemes})
 	      \   {
 	      \     'bookmark': "\<C-^>",
 	      \   },
+	      \ )
+<
+							*fern#smar#binary*
+fern#smart#binary({binary}, {text})
+	Return one of a given mapping expression determined by a "filetype" of a
+	current cursor node. If the node is binary file, the {binary} is returned.
+	If the node is branch and text file, the {text} is returned.
+>
+	" Perform 'open:system' on binary node and 'open' on text node
+	nmap <buffer><expr>
+	      \ <Plug>(fern-open-binary-or-text)
+	      \ fern#smart#binary(
+	      \   "\<Plug>(fern-action-open:system)",
+	      \   "\<Plug>(fern-action-open)",
 	      \ )
 
 -----------------------------------------------------------------------------
