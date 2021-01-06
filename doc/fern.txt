@@ -700,11 +700,11 @@ fern#smart#scheme({default}, {schemes})
 	      \   },
 	      \ )
 <
-							*fern#smart#binary*
+							*fern#smart#binary()*
 fern#smart#binary({binary}, {text})
 	Return one of a given mapping expression determined by a "filetype" of a
 	current cursor node. If the node is binary file, the {binary} is returned.
-	If the node is branch and text file, the {text} is returned.
+	Note this command is dependent on system GNU/BSD grep command.
 >
 	" Perform 'open:system' on binary node and 'open' on text node
 	nmap <buffer><expr>

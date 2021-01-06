@@ -30,6 +30,12 @@ function! fern#smart#scheme(default, schemes) abort
 endfunction
 
 function! fern#smart#binary(binary, text) abort
+  if !executable('grep')
+    echohl ErrorMsg
+    echo '[fern] "grep" is not executable'
+    echohl None
+    return "\<Nop>"
+  endif
   let helper = fern#helper#new()
   let node = helper.sync.get_cursor_node()
   if node is# v:null
